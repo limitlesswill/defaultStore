@@ -27,13 +27,13 @@ jobs:
       - name: dotnet publish
         run: |
           cd Application.Models
-          dotnet publish -c Release -o dream
+          dotnet publish -c Release -o myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: Application.Models/dream
+          path: Application.Models/myapp
 
   deploy:
     runs-on: windows-latest
@@ -43,6 +43,11 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
