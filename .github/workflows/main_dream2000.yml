@@ -58,4 +58,4 @@ jobs:
           app-name: 'dream2000'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0175BAAF438649D98BDACF3FA32C82BA }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
