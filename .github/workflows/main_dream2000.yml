@@ -50,10 +50,9 @@ jobs:
 
       - name: Azure Login
         uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZURE_CREDENTIALS.clientId }}
-          client-secret: ${{ secrets.AZURE_CREDENTIALS.clientSecret }}
-          tenant-id: ${{ secrets.AZURE_CREDENTIALS.tenantId }}
+        with:    
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          auth-type: SERVICE_PRINCIPAL
 
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
