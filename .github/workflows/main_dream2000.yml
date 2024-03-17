@@ -53,6 +53,8 @@ jobs:
         with:    
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           auth-type: IDENTITY
+          audience : "api://31683d64-7d07-4ca2-8a0d-6e4687345567",
+          allow-no-subscriptions : "true"
 
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
