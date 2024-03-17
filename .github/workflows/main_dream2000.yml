@@ -44,7 +44,9 @@ jobs:
     
     steps:
       - name: Debug Secret
-        run: echo ${{ secrets.AZURE_CREDENTIALS }}
+        run: |
+          Write-Output "AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}"
+
 
       - name: Azure Login
         uses: azure/login@v2
