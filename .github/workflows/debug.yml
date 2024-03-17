@@ -1,2 +1,0 @@
-- name: Debug Secret
-  run: echo ${{ secrets.AZURE_CREDENTIALS }}
