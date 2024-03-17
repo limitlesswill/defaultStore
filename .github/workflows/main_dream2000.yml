@@ -49,10 +49,10 @@ jobs:
 
 
       - name: Azure Login
-        uses: azure/login@v2
+        uses: Azure/login@v2.0.0
         with:    
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          auth-type: SERVICE_PRINCIPAL
+          auth-type: IDENTITY
 
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
