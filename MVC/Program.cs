@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 
 namespace MVC
 {
@@ -120,6 +121,18 @@ namespace MVC
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddMvc();
             var app = builder.Build();
+
+            app.Use(async (context, next) =>
+            {
+                context.Items["dev"] = JsonConvert.SerializeObject(app.Environment);
+
+                await next();
+            });
+
+            /* temporarily */
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

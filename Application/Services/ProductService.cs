@@ -16,10 +16,10 @@ namespace Application.Services
             this.productRepository = _product;
             this.mapper = _mapper;
         }
-        public async Task<CreateOrUpdateProductDTO> GetAll()
+        public async Task<List<CreateOrUpdateProductDTO>> GetAll()
         {
             var prd = await productRepository.GetAllAsync();
-            return mapper.Map<CreateOrUpdateProductDTO>(prd);
+            return mapper.Map<List<CreateOrUpdateProductDTO>>(prd);
         }
         public async Task<CreateOrUpdateProductDTO> Save()
         {

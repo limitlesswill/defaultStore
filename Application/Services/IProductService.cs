@@ -8,7 +8,7 @@ namespace Application.Services
 {
     public interface IProductService
     {
-        public Task<CreateOrUpdateProductDTO> GetAll();
+        public Task<List<CreateOrUpdateProductDTO>> GetAll();
         public Task<CreateOrUpdateProductDTO> GetOne(int id);
         public Task<ResultView<CreateOrUpdateProductDTO>> Create(CreateOrUpdateProductDTO product);
         public Task<CreateOrUpdateProductDTO> Update(CreateOrUpdateProductDTO product);

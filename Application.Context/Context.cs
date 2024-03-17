@@ -8,11 +8,11 @@ namespace Application.Context
 {
     public class User : IdentityUser
     {
-
+        
     }
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public DbSet<Product> prodtuct { get; set; }
+        public DbSet<Product> product { get; set; }
         public DbSet<Category> category { get; set; }
         public ApplicationDbContext(DbContextOptions options)
             : base(options)

@@ -18,7 +18,7 @@ namespace MVC.Controllers
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public IActionResult Contact()
         {
             return View();
