@@ -16,26 +16,27 @@ namespace Application.Services
             this.productRepository = _product;
             this.mapper = _mapper;
         }
+
         public async Task<List<CreateOrUpdateProductDTO>> GetAll()
         {
             var prd = await productRepository.GetAllAsync();
             return mapper.Map<List<CreateOrUpdateProductDTO>>(prd);
         }
-        public async Task<CreateOrUpdateProductDTO> Save()
-        {
-            var res = await productRepository.SaveChangesAsync();
-            return mapper.Map<CreateOrUpdateProductDTO>(res);
-        }
-        public async Task<CreateOrUpdateProductDTO> Update(CreateOrUpdateProductDTO product)
-        {
-            var prd = mapper.Map<Product>(product);
-            var NewProd = await productRepository.UpdateAsync(prd);
-            return mapper.Map<CreateOrUpdateProductDTO>(NewProd);
-        }
+
         public async Task<CreateOrUpdateProductDTO> GetOne(int id)
         {
             var prd = await productRepository.GetByIdAsync(id);
             return mapper.Map<CreateOrUpdateProductDTO>(prd);
+        }
+
+        public async Task<ResultView<CreateOrUpdateProductDTO>> Update(CreateOrUpdateProductDTO product)
+        {
+            var prd = mapper.Map<Product>(product);
+            var NewProd = await productRepository.UpdateAsync(prd);
+            await productRepository.SaveChangesAsync();
+            var en = mapper.Map<CreateOrUpdateProductDTO>(NewProd);
+
+            return new ResultView<CreateOrUpdateProductDTO> { Entity = en, IsSuccess = true, msg = "Update Successful" };
         }
 
         public async Task<ResultView<CreateOrUpdateProductDTO>> Create(CreateOrUpdateProductDTO product)
@@ -55,6 +56,7 @@ namespace Application.Services
                 return new ResultView<CreateOrUpdateProductDTO> { Entity = p, IsSuccess = true, msg = "Created Successful" };
             }
         }
+
         public async Task<ResultView<CreateOrUpdateProductDTO>> Delete(CreateOrUpdateProductDTO product)
         {
             var prd = mapper.Map<Product>(product);
@@ -63,6 +65,12 @@ namespace Application.Services
             var p = mapper.Map<CreateOrUpdateProductDTO>(OldProd);
             return new ResultView<CreateOrUpdateProductDTO> { Entity = p, IsSuccess = true, msg = "Deleted Successful" };
 
+        }
+
+        public async Task<int> Save()
+        {
+            var res = await productRepository.SaveChangesAsync();
+            return res;
         }
     }
 }

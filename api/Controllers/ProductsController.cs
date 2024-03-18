@@ -42,7 +42,6 @@ namespace api.Controllers
             }
 
             return ele is null ? Ok("Records NotFound") : Ok(ele);
-
         }
 
         [HttpGet, Route("{id:long}")]
@@ -85,7 +84,7 @@ namespace api.Controllers
         // return Ok("ok");
         //}
 
-        [HttpPost("Create")]
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateOrUpdateProductDTO product)
         {
             if (ModelState.IsValid)
@@ -102,7 +101,7 @@ namespace api.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPut("Update")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] CreateOrUpdateProductDTO product)
         {
             if (ModelState.IsValid)
@@ -118,7 +117,7 @@ namespace api.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpDelete("Delete"), Authorize]
+        [HttpDelete, Authorize]
         public async Task<IActionResult> Delete([FromBody] int id)
         {
             if (id <= 0) return BadRequest("invalid id");

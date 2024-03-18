@@ -11,8 +11,8 @@ namespace Application.Services
         public Task<List<CreateOrUpdateProductDTO>> GetAll();
         public Task<CreateOrUpdateProductDTO> GetOne(int id);
         public Task<ResultView<CreateOrUpdateProductDTO>> Create(CreateOrUpdateProductDTO product);
-        public Task<CreateOrUpdateProductDTO> Update(CreateOrUpdateProductDTO product);
+        public Task<ResultView<CreateOrUpdateProductDTO>> Update(CreateOrUpdateProductDTO product);
         public Task<ResultView<CreateOrUpdateProductDTO>> Delete(CreateOrUpdateProductDTO product);
-        public Task<CreateOrUpdateProductDTO> Save();
+        public Task<int> Save();
     }
 }
