@@ -85,7 +85,7 @@ namespace api.Controllers
         // return Ok("ok");
         //}
 
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<IActionResult> Create([FromBody] CreateOrUpdateProductDTO product)
         {
             if (ModelState.IsValid)
@@ -102,7 +102,7 @@ namespace api.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public async Task<IActionResult> Update([FromBody] CreateOrUpdateProductDTO product)
         {
             if (ModelState.IsValid)
@@ -118,7 +118,7 @@ namespace api.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpDelete, Authorize]
+        [HttpDelete("Delete"), Authorize]
         public async Task<IActionResult> Delete([FromBody] int id)
         {
             if (id <= 0) return BadRequest("invalid id");
