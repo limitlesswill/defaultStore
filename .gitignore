@@ -364,4 +364,3 @@ MigrationBackup/
 FodyWeavers.xsd
 /MVC/appsettings.json
 /Application.Context/Migrations/*
-/MVC/MVC.csproj
