@@ -363,12 +363,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /MVC/appsettings.json
-/.github/workflows/dream2000.yml
-/Application.Context/Migrations/20240302121114_INITIAL.cs
-/Application.Context/Migrations/20240317171114_INTIAL.cs
-/Application.Context/Migrations/20240318224324_INITIAL.cs
-/Application.Context/Migrations/20240318224324_INITIAL.Designer.cs
-/Application.Context/Migrations/20240302121114_INITIAL.Designer.cs
-/Application.Context/Migrations/20240317171114_INTIAL.Designer.cs
-/.github/workflows/main_dream2000.yml
+/Application.Context/Migrations/*
 /MVC/MVC.csproj
