@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using Application.Services;
 using DTOs.Product;
-//using System.Linq;
 
 namespace api.Controllers
 {
@@ -84,24 +83,25 @@ namespace api.Controllers
         // return Ok("ok");
         //}
 
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<IActionResult> Create([FromBody] CreateOrUpdateProductDTO product)
         {
             if (ModelState.IsValid)
             {
+                var ooo = product;
                 var ele = await productService.Create(product);
 
                 if (ele is null) return NotFound("A weird error happened during creation");
 
-                var location = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}");
+                var location = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}/");
                 var uri = location.AbsoluteUri;
                 /* this needs to change, waiting they make up thier mind and choose a model to follow */
-                return Created(uri + ele.Entity.id, " Created");
+                return Created(uri + ele.Entity.name, " Created");
             }
             return BadRequest(ModelState);
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public async Task<IActionResult> Update([FromBody] CreateOrUpdateProductDTO product)
         {
             if (ModelState.IsValid)
@@ -117,7 +117,7 @@ namespace api.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpDelete, Authorize]
+        [HttpDelete("Delete"), Authorize]
         public async Task<IActionResult> Delete([FromBody] int id)
         {
             if (id <= 0) return BadRequest("invalid id");

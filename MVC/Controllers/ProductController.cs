@@ -15,7 +15,7 @@ namespace MVC.Controllers
         public async Task<IActionResult> Index()
         {
             var prds = await productservice.GetAll();
-            return View();
+            return View(prds);
         }
 
         // GET: ProductController/Details/5

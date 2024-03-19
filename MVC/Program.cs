@@ -111,7 +111,7 @@ namespace MVC
 
 
 
-            builder.Services.AddScoped<ApplicationDbContext, ApplicationDbContext>();
+            builder.Services.AddScoped<ApplicationDbContext>();
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

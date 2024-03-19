@@ -31,7 +31,11 @@ namespace Application.Services
 
         public async Task<ResultView<CreateOrUpdateProductDTO>> Update(CreateOrUpdateProductDTO product)
         {
-            var prd = mapper.Map<Product>(product);
+            var prd = await productRepository.GetByIdAsync(product.id);
+            if (prd is null) return new ResultView<CreateOrUpdateProductDTO> { Entity = null, IsSuccess = false, msg = "Update Failed" };
+            prd.name = product.name;
+            prd.description = product.description;
+            prd.price = product.price;
             var NewProd = await productRepository.UpdateAsync(prd);
             await productRepository.SaveChangesAsync();
             var en = mapper.Map<CreateOrUpdateProductDTO>(NewProd);
@@ -45,7 +49,8 @@ namespace Application.Services
             var OldProduct = query.Where(p => p.name == product.name).FirstOrDefault();
             if (OldProduct != null)
             {
-                return new ResultView<CreateOrUpdateProductDTO> { Entity = null, IsSuccess = false, msg = "Already Exists" };
+                var ex = mapper.Map<CreateOrUpdateProductDTO>(OldProduct);
+                return new ResultView<CreateOrUpdateProductDTO> { Entity = ex, IsSuccess = false, msg = "Already Exists" };
             }
             else
             {

@@ -1,0 +1,25 @@
+﻿@using DTOs.Product;
+@model List<CreateOrUpdateProductDTO>;
+
+
+
+<div class="text-center">
+    <h1 class="display-4">SPECIAL VIEW</h1>
+    <table class="table table-hover table-bordered table-responsive">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        @foreach (CreateOrUpdateProductDTO x in Model)
+        {
+            <tr>
+                <td>@x.name</td>
+                <td>@x.price</td>
+                <td>@x.description</td>
+            </tr>
+        }
+    </table>
+</div>
